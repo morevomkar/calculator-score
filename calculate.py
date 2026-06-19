@@ -510,8 +510,3 @@ with tab4:
 # ─── Footer ───────────────────────────────────────────────────────────────────
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 st.markdown('<p style="color:#475569;font-size:0.8rem;text-align:center;">Built with Streamlit · scipy.stats · numpy · pandas · matplotlib</p>', unsafe_allow_html=True)
-PYEOF
-echo "Done"
-Output
-
-Done
