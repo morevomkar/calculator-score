@@ -1,7 +1,6 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from scipy import stats
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import io
