@@ -1,9 +1,4 @@
-Overwrite the file with the full updated app
 
-Overwrite the file with the full updated app
-bash
-
-cat > /mnt/user-data/outputs/statistical_tests_app.py << 'PYEOF'
 import streamlit as st
 import numpy as np
 import pandas as pd
