@@ -389,19 +389,24 @@ with tab1:
     st.markdown('<div class="section-title">Z-Score Calculator</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-desc">Standardise a data point against its distribution — or flag outliers across an entire dataset.</div>', unsafe_allow_html=True)
 
+    # ── All widget state collected at top level so button handler can read them ──
+    src_z   = st.radio("Data source", ["Manual input", "Upload Excel / CSV"], horizontal=True, key="z_src")
+    mode_z  = st.radio("Mode", ["Single value", "Full dataset"], horizontal=True, key="z_mode") if src_z == "Manual input" else "Full dataset"
+    alpha_z = st.slider("Significance level (α)", 0.01, 0.10, 0.05, 0.01, key="z_alpha")
+
     c_left, c_right = st.columns([1, 2], gap="large")
 
     with c_left:
         st.markdown('<div class="card-title">⚙ Configuration</div>', unsafe_allow_html=True)
-        src_z = st.radio("Data source", ["Manual input", "Upload Excel / CSV"], horizontal=False, key="z_src")
-        alpha_z = st.slider("Significance level (α)", 0.01, 0.10, 0.05, 0.01, key="z_alpha")
-        if src_z == "Manual input":
-            mode_z = st.radio("Mode", ["Single value", "Full dataset"], horizontal=False, key="z_mode")
+        st.caption(f"**Source:** {src_z}  |  **Mode:** {mode_z}  |  **α:** {alpha_z}")
         run_z = st.button("▶  Calculate Z-Score", key="z_run", use_container_width=True)
+
+    # Declare all inputs with safe defaults so they always exist in scope
+    x_val_z = 0.0; mu_z = 0.0; sigma_z = 1.0
+    data_arr_z = None; col_sel_z = None
 
     with c_right:
         st.markdown('<div class="card-title">📥 Input Data</div>', unsafe_allow_html=True)
-        col_sel_z = None; data_arr_z = None; mu_z = sigma_z = None
 
         if src_z == "Manual input":
             if mode_z == "Single value":
